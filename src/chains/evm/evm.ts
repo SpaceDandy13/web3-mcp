@@ -74,6 +74,13 @@ const NETWORKS: { [key: string]: NetworkConfig } = {
     chainId: 2024,
     currencySymbol: "SONIC",
     explorer: "https://explorer.sonic.ooo"
+  },
+  Monad: {
+    name: "Monad",
+    rpc: process.env.Monad_RPC_URL || "https://testnet-rpc.monad.xyz",
+    chainId: 10143,
+    currencySymbol: "Monad",
+    explorer: "https://testnet.monadexplorer.com"
   }
 };
 
