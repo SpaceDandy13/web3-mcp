@@ -16,8 +16,9 @@ console.error('.env file exists:', existsSync(envPath));
 // Load environment variables
 const result = config({ path: envPath });
 if (result.error) {
-  console.error('Error loading .env file:', result.error);
-  process.exit(1);
+  console.warn('No .env file found, falling back to process.env:', result.error.message);
+} else {
+  console.log('Successfully loaded .env file');
 }
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
