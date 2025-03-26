@@ -112,12 +112,17 @@ app.use(express.json()); // 解析 JSON 请求体
 // SSE 和 POST 处理
 let transport: SSEServerTransport | null = null;
 
-app.get('/sse', (req, res) => {
+app.get('/', (req, res) => {
+  console.log('Received / request at:', new Date().toISOString());
   transport = new SSEServerTransport('/messages', res);
-  server.connect(transport).catch(err => {
-    console.error('Failed to connect transport:', err);
-    res.status(500).end();
-  });
+  server.connect(transport)
+    .then(() => {
+      console.log('Transport connected successfully');
+    })
+    .catch(err => {
+      console.error('Failed to connect transport:', err);
+      res.status(500).end();
+    });
 });
 
 app.post('/messages', (req, res) => {
