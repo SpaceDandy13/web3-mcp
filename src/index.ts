@@ -107,7 +107,6 @@ registerGeneralTools(server);
 
 // 创建 Express 应用
 const app = express();
-app.use(express.json()); // 解析 JSON 请求体
 
 // SSE 和 POST 处理
 let transport: SSEServerTransport | null = null;
