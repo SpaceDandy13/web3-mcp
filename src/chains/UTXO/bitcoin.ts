@@ -142,4 +142,30 @@ Fee Rates (sats/byte):
       }
     }
   )
+
+  server.tool(
+    "getBitcoinPrice",
+    "Get realtime bitcoin price",
+    {
+      input: z.object({}).optional().describe("No specific input required"),
+    },
+    async ({ input }) => {
+      try {
+        const response = await fetch("https://api.coincap.io/v2/assets/bitcoin");
+        if (!response.ok) {
+          throw new Error("Error fetching coincap data");
+        }
+  
+        const body = await response.json();
+  
+        return {
+          content: [{ type: "text", text: `${JSON.stringify(body.data)}` }],
+        };
+      } catch (error) {
+        return {
+          content: [{ type: "text", text: `Error: ${error instanceof Error ? error.message : String(error)}` }],
+        };
+      }
+    }
+  );
 }
