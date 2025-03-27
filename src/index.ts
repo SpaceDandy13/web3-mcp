@@ -125,7 +125,7 @@ app.get('/sse', (req, res) => {
     });
 });
 
-app.post('/message', (req, res) => {
+app.post('/messages', (req, res) => {
   if (transport) {
     transport.handlePostMessage(req, res);
   } else {
