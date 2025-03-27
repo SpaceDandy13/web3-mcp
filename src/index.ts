@@ -112,7 +112,7 @@ app.use(express.json()); // 解析 JSON 请求体
 // SSE 和 POST 处理
 let transport: SSEServerTransport | null = null;
 
-app.get('/', (req, res) => {
+app.get('/sse', (req, res) => {
   console.log('Received / request at:', new Date().toISOString());
   transport = new SSEServerTransport('/messages', res);
   server.connect(transport)
@@ -125,7 +125,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.post('/messages', (req, res) => {
+app.post('/message', (req, res) => {
   if (transport) {
     transport.handlePostMessage(req, res);
   } else {
