@@ -146,10 +146,8 @@ Fee Rates (sats/byte):
   server.tool(
     "getBitcoinPrice",
     "Get realtime bitcoin price",
-    {
-      input: z.object({}).optional().describe("No specific input required"),
-    },
-    async ({ input }) => {
+    {},
+    async () => {
       try {
         const response = await fetch("https://api.coincap.io/v2/assets/bitcoin");
         if (!response.ok) {
