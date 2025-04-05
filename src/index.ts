@@ -132,6 +132,16 @@ app.post('/messages', (req, res) => {
   }
 });
 
+app.get('/ping', (req, res) => {
+  console.log('📡 Received a ping request');
+  // 返回响应
+  res.status(200).json({ 
+    status: 'success', 
+    message: 'pong',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // 启动服务器
 const port = parseInt(process.env.PORT || '3000', 10);
 app.listen(port, '0.0.0.0', () => {
